@@ -42,3 +42,16 @@ data class WorkoutSummary(
     val day: String,
     val duration: String,
 )
+
+/** Entrada de peso no histórico. */
+data class WeightEntry(
+    val date: String,
+    val weight: Double,
+)
+
+/** Medida corporal específica (braço, cintura, etc). */
+data class BodyMeasure(
+    val name: String,
+    val value: String,
+    val change: String? = null,
+)

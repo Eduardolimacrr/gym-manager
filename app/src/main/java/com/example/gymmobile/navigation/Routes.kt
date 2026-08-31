@@ -6,6 +6,8 @@ object Routes {
     const val PROGRESS = "progress"
     const val PROFILE = "profile"
     const val CREATE = "create"
+    const val METRICS = "metrics"
+    const val TIMER = "timer"
 
     const val ARG_TEMPLATE_ID = "templateId"
     const val ARG_EXERCISE_ID = "exerciseId"

@@ -14,9 +14,13 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.material.icons.filled.Timer
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
@@ -39,6 +43,7 @@ import com.example.gymmobile.ui.theme.GymType
 @Composable
 fun HomeScreen(
     onStartWorkout: (String) -> Unit,
+    onOpenTimer: () -> Unit,
     viewModel: HomeViewModel = viewModel(),
 ) {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -50,15 +55,32 @@ fun HomeScreen(
             .verticalScroll(rememberScrollState())
             .padding(start = 18.dp, end = 18.dp, top = 4.dp, bottom = 18.dp)
     ) {
-        Text(
-            text = "Bom treino,",
-            style = GymType.body12.copy(color = GymColors.TextMuted),
-        )
-        Text(
-            text = state.greetingName,
-            style = GymType.display22,
-            modifier = Modifier.padding(top = 2.dp, bottom = 18.dp),
-        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Column {
+                Text(
+                    text = "Bom treino,",
+                    style = GymType.body12.copy(color = GymColors.TextMuted),
+                )
+                Text(
+                    text = state.greetingName,
+                    style = GymType.display22,
+                    modifier = Modifier.padding(top = 2.dp),
+                )
+            }
+            IconButton(onClick = onOpenTimer) {
+                Icon(
+                    imageVector = Icons.Default.Timer,
+                    contentDescription = "Timer",
+                    tint = GymColors.Accent
+                )
+            }
+        }
+
+        Spacer(Modifier.height(18.dp))
 
         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
             StatCard(
@@ -142,5 +164,5 @@ private fun TodayCard(
 @Preview(widthDp = 390, heightDp = 760)
 @Composable
 private fun HomeScreenPreview() {
-    GymTheme { HomeScreen(onStartWorkout = {}) }
+    GymTheme { HomeScreen(onStartWorkout = {}, onOpenTimer = {}) }
 }

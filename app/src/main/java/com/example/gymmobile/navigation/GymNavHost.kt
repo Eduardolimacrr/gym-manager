@@ -19,6 +19,8 @@ import com.example.gymmobile.feature.home.HomeScreen
 import com.example.gymmobile.feature.profile.ProfileScreen
 import com.example.gymmobile.feature.progress.ProgressDetailScreen
 import com.example.gymmobile.feature.progress.ProgressScreen
+import com.example.gymmobile.feature.progress.BodyMetricsScreen
+import com.example.gymmobile.feature.timer.TimerScreen
 import com.example.gymmobile.feature.workouts.WorkoutsScreen
 import com.example.gymmobile.ui.theme.GymColors
 
@@ -45,6 +47,7 @@ fun GymApp() {
             composable(Routes.HOME) {
                 HomeScreen(
                     onStartWorkout = { id -> navController.navigate(Routes.active(id)) },
+                    onOpenTimer = { navController.navigate(Routes.TIMER) }
                 )
             }
             composable(Routes.WORKOUTS) {
@@ -57,6 +60,7 @@ fun GymApp() {
             composable(Routes.PROGRESS) {
                 ProgressScreen(
                     onOpenExercise = { id -> navController.navigate(Routes.progressDetail(id)) },
+                    onOpenMetrics = { navController.navigate(Routes.METRICS) }
                 )
             }
             composable(Routes.PROFILE) {
@@ -95,6 +99,12 @@ fun GymApp() {
                     exerciseId = entry.arguments?.getString(Routes.ARG_EXERCISE_ID).orEmpty(),
                     onBack = { navController.popBackStack() },
                 )
+            }
+            composable(Routes.METRICS) {
+                BodyMetricsScreen(onBack = { navController.popBackStack() })
+            }
+            composable(Routes.TIMER) {
+                TimerScreen(onBack = { navController.popBackStack() })
             }
         }
     }

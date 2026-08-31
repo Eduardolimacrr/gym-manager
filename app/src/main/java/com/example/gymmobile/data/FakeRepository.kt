@@ -122,6 +122,23 @@ object FakeRepository {
     fun progressById(id: String): ProgressExercise? =
         progressExercises.firstOrNull { it.id == id }
 
+    // ----- medidas e composição -----
+    val weightHistory = listOf(
+        WeightEntry("Mai", 82.0),
+        WeightEntry("Jun", 81.2),
+        WeightEntry("Jul", 80.5),
+        WeightEntry("Ago", 79.8),
+    )
+
+    val currentBodyMeasures = listOf(
+        BodyMeasure("Braço", "38 cm", "+0.5 cm"),
+        BodyMeasure("Cintura", "84 cm", "-1.2 cm"),
+        BodyMeasure("Peito", "102 cm", "+1.0 cm"),
+        BodyMeasure("Coxa", "60 cm", "+0.5 cm"),
+    )
+
+    const val bodyFat = "14.5%"
+
     // ----- catálogo do criador de treinos -----
     val exerciseCatalog = listOf(
         "Supino reto", "Supino inclinado", "Desenvolvimento halteres", "Elevação lateral",
